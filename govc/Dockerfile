@@ -14,5 +14,5 @@ RUN apk add --no-cache git && \
 
 FROM alpine:3.7
 COPY --from=0 /go/src/github.com/vmware/govmomi/govc/govc /usr/local/bin/govc
-RUN apk add --no-cache ca-certificate
+RUN apk add --no-cache ca-certificates
 ENTRYPOINT [ "/usr/local/bin/govc" ]
