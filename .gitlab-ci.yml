@@ -10,9 +10,10 @@ stages:
     RELEASE: "master"
   before_script:
     - cd $CI_JOB_NAME
+    - export TAG=$RELEASE
+    - if [[ $RELEASE == v* ]]; then export TAG=${RELEASE#"v"}; fi
   script:
     - docker build --build-arg RELEASE=$RELEASE -t bennu/$CI_JOB_NAME:$RELEASE .
-    - if [[ $RELEASE == v* ]]; then TAG=${RELEASE#"v"}; fi
     - if [ $RELEASE != "master" ]; then
       docker tag bennu/$CI_JOB_NAME:$RELEASE bennu/$CI_JOB_NAME:latest;
       docker tag bennu/$CI_JOB_NAME:$RELEASE bennu/$CI_JOB_NAME:$TAG;
