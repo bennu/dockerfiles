@@ -8,11 +8,9 @@ stages:
   stage: docker
   variables:
     RELEASE: "master"
+    TAG: echo ${RELEASE#"v"}
   before_script:
     - cd $CI_JOB_NAME
-    - export TAG=$RELEASE
-    - if [[ $RELEASE == v* ]]; then export TAG=${RELEASE#"v"}; fi
-    - echo "using docker TAG ${TAG}"
   script:
     - docker build --build-arg RELEASE=$RELEASE -t bennu/$CI_JOB_NAME:$RELEASE .
     - if [ $RELEASE != "master" ]; then
