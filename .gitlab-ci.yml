@@ -22,3 +22,10 @@ govc:
   <<: *builder
   variables:
     RELEASE: "v0.18.0"
+
+kustomize:
+  <<: *builder
+  variables:
+    RELEASE: "v1.0.8"
+
+
