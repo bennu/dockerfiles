@@ -34,4 +34,7 @@ kustomize:
   variables:
     RELEASE: "v1.0.8"
 
-
+hugo:
+  <<: *builder
+  variables:
+    RELEASE: "v0.49"
