@@ -1,0 +1,32 @@
+#!/bin/bash
+
+TO=2 #default minutes
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <endpoint> [time_out]"
+    exit 1
+fi
+
+if [ $# -eq 2 ]; then
+    TO=$2
+fi
+
+let TIME=$(expr $TO*60)
+let COUNT=1
+let DELAY=5
+while true
+do
+    STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' $1)
+    if [ $STATUS_CODE -eq 200 ]; then
+        break
+    fi
+    if [ "$((COUNT*$DELAY))" -gt "$TIME" ]; then
+        echo "Fail Timeout $TO minutes! -$1"
+        exit 1
+    fi
+    COUNT=$[COUNT+1]
+    sleep $DELAY
+done
+
+echo "Service $1 Up!"
+exit 0
