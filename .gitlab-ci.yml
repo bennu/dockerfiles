@@ -39,3 +39,8 @@ hugo:
   <<: *builder
   variables:
     RELEASE: "v0.49"
+
+maven-docker:
+  <<: *builder
+  variables:
+    RELEASE: "v0.1"
