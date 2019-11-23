@@ -35,10 +35,10 @@ kustomize:
   variables:
     RELEASE: "v1.0.8"
 
-hugo:
+hugo-docsy:
   <<: *builder
   variables:
-    RELEASE: "v0.49"
+    RELEASE: "v0.59.1"
 
 maven-docker:
   <<: *builder
