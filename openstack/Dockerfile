@@ -3,6 +3,7 @@ RUN apk add --no-cache \
   python-dev \
   py-pip \
   py-setuptools \
+  jq \
   ca-certificates && \
   apk add --no-cache \
   --virtual build-deps \
